@@ -9,7 +9,7 @@ void errusage();
 int main(int argc, char *argv[])
 {
 
-    int isFile = 0, opt;
+    int opt;
     int fd = -1;
 
     while ((opt = getopt(argc, argv, "f:")) != -1)
@@ -19,9 +19,16 @@ int main(int argc, char *argv[])
         case 'f':
             if ((fd = open(optarg, O_WRONLY | O_CREAT, 0666)) < 0)
             {
-                perror("Open");
+                perror("Main");
+                exit(1);
             }
-            isFile = 1;
+
+            // direct stdout to file
+            if (dup2(fd, 1) < 0)
+            {
+                perror("Main");
+                exit(1);
+            }
             break;
         default:
             errusage();
