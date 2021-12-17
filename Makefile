@@ -17,7 +17,7 @@ EXEC = sort
 
 all: setup $(EXEC)
 
-debug: CFLAGS += DFLAGS
+debug: CFLAGS += $(DFLAGS)
 debug: all
 
 setup:

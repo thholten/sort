@@ -4,6 +4,8 @@
 #include <errno.h>
 #include <stdlib.h>
 
+#include "sort.h"
+
 void errusage();
 
 int main(int argc, char *argv[])
@@ -35,6 +37,7 @@ int main(int argc, char *argv[])
             break;
         }
     }
+    return sort();
 }
 
 void errusage()
